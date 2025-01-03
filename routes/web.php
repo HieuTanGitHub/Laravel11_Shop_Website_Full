@@ -22,6 +22,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserRolesController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ProductAttributeController;
+use App\Http\Controllers\AttributeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -288,6 +290,35 @@ Route::get('upload_video', [DocumentController::class, 'upload_video']);
 Route::get('download_document/{path}/{name}', [DocumentController::class, 'download_document']);
 Route::get('create_document', [DocumentController::class, 'create_document']);
 Route::get('create_sub_dir', [DocumentController::class, 'create_sub_dir']);
+
+//Product Attribute
+Route::get('product-attribute/{product_id}', [ProductAttributeController::class, 'show']);
+Route::delete('/product-attribute/{id}', [ProductAttributeController::class, 'deleteProductAttribute'])->name('product-attribute.delete');
+Route::post(
+    '/product-attribute',
+    [ProductAttributeController::class, 'store']
+)->name('product-attribute.store');
+
+
+// Display a list of attributes
+Route::get('/attribute', [AttributeController::class, 'index'])->name('attribute.index');
+
+// Show the form to create a new attribute
+Route::get('/attribute/create', [AttributeController::class, 'create'])->name('attribute.create');
+
+// Store a new attribute
+Route::post('/attribute', [AttributeController::class, 'store'])->name('attribute.store');
+
+// Show the edit form for an attribute
+Route::get('/attribute/{id}/edit', [AttributeController::class, 'edit'])->name('attribute.edit');
+
+// Handle the update request for an attribute
+Route::put('/attribute/{id}', [AttributeController::class, 'update'])->name('attribute.update');
+
+// Delete an attribute
+Route::delete('/attribute/{id}', [AttributeController::class, 'destroy'])->name('attribute.destroy');
+
+
 
 Route::get('delete_document/{path}', [DocumentController::class, 'delete_document']);
 

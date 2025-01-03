@@ -84,7 +84,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="{{ 'frontend/images/home/logo.png' }}" alt="" /></a>
+                            <a href="{{ url('/') }}"><img src="{{ 'frontend/images/home/logo.png' }}"
+                                    alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
@@ -197,6 +198,7 @@
 
         <div class="header-bottom" id="navbar"><!--header-bottom-->
             <div class="container">
+
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="navbar-header">
@@ -212,26 +214,35 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
 
                                 <li><a href="{{ URL::to('/trang-chu') }}" class="active">Trang chủ</a></li>
-                                <li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
+                                <li class="dropdown">
+                                    <a href="#">Danh mục <i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach ($category as $key => $cate)
                                             @if ($cate->category_parent == 0)
-                                                <li><a
-                                                        href="{{ URL::to('/danh-muc/' . $cate->slug_category_product) }}">{{ $cate->category_name }}</a>
+                                                <li class="menu-item">
+                                                    <a
+                                                        href="{{ URL::to('/danh-muc/' . $cate->slug_category_product) }}">
+                                                        {{ $cate->category_name }}
+                                                    </a><i class="fa fa-angle-right"></i>
+                                                    <ul class="cate_sub">
+                                                        @foreach ($category as $key => $cate_sub)
+                                                            @if ($cate_sub->category_parent == $cate->category_id)
+                                                                <li class="submenu-item">
+                                                                    <a
+                                                                        href="{{ URL::to('/danh-muc/' . $cate_sub->slug_category_product) }}">
+
+                                                                        {{ $cate_sub->category_name }}
+                                                                    </a>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
                                                 </li>
-                                                @foreach ($category as $key => $cate_sub)
-                                                    @if ($cate_sub->category_parent == $cate->category_id)
-                                                        <ul class="cate_sub">
-                                                            <li><a
-                                                                    href="{{ URL::to('/danh-muc/' . $cate_sub->slug_category_product) }}">{{ $cate_sub->category_name }}</a>
-                                                            </li>
-                                                        </ul>
-                                                    @endif
-                                                @endforeach
                                             @endif
                                         @endforeach
                                     </ul>
                                 </li>
+
 
                                 <li class="dropdown"><a href="#">Blogs<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
@@ -251,7 +262,7 @@
                                     </a>
 
                                 </li>
-                                {{--  <li><a href="{{URL::to('/video-shop')}}">{{__('lang.video')}}</a></li> --}}
+
                                 <li><a href="{{ URL::to('/lien-he') }}">Contact</a></li>
                             </ul>
                         </div>
@@ -1433,61 +1444,52 @@
             });
         }
         $(document).ready(function() {
-
             $('.add-to-cart').click(function() {
-
-                var id = $(this).data('id_product');
-                // alert(id);
-                var cart_product_id = $('.cart_product_id_' + id).val();
-                var cart_product_name = $('.cart_product_name_' + id).val();
-                var cart_product_image = $('.cart_product_image_' + id).val();
-                var cart_product_quantity = $('.cart_product_quantity_' + id).val();
-                var cart_product_price = $('.cart_price_attribute').val();
-                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                // Get product information
+                var id_product = $('.product_id').val();
+                var id_attribute = $('.cart_product_id_attribute').val();
                 var _token = $('input[name="_token"]').val();
 
-                if (parseInt(cart_product_qty) > parseInt(cart_product_quantity)) {
-                    alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
-                } else {
+                // Validate quantity
+                // if (parseInt(cart_product_qty) > parseInt(cart_product_quantity)) {
+                //     alert('Làm ơn đặt nhỏ hơn số lượng tồn kho: ' + cart_product_quantity);
+                //     return;
+                // }
 
-                    $.ajax({
-                        url: '{{ url('/add-cart-ajax') }}',
-                        method: 'POST',
-                        data: {
-                            cart_product_id: cart_product_id,
-                            cart_product_name: cart_product_name,
-                            cart_product_image: cart_product_image,
-                            cart_product_price: cart_product_price,
-                            cart_product_qty: cart_product_qty,
-                            _token: _token,
-                            cart_product_quantity: cart_product_quantity
-                        },
-                        success: function() {
+                // AJAX call to add product to cart
+                $.ajax({
+                    url: '/add-cart-ajax', // Use the actual URL here
+                    method: 'POST',
+                    data: {
+                        id_product: id_product,
+                        id_attribute: id_attribute,
+                        _token: _token,
+                    },
+                    success: function(response) {
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href =
+                                    "/gio-hang"; // Use the actual URL here
+                            });
 
-                            swal({
-                                    title: "Đã thêm sản phẩm vào giỏ hàng",
-                                    text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                                    showCancelButton: true,
-                                    cancelButtonText: "Xem tiếp",
-                                    confirmButtonClass: "btn-success",
-                                    confirmButtonText: "Đi đến giỏ hàng",
-                                    closeOnConfirm: false
-                                },
-                                function() {
-                                    window.location.href = "{{ url('/gio-hang') }}";
-                                });
-
-                            show_cart();
-                            hover_cart();
-                            cart_session();
-                        }
-
-                    });
-                }
-
-
+                        // Update cart UI
+                        show_cart();
+                        hover_cart();
+                        cart_session();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Có lỗi xảy ra: ' + error);
+                    }
+                });
             });
-
         });
     </script>
 
@@ -1555,60 +1557,7 @@
         })
 
         function Addtocart($product_id) {
-            var id = $product_id;
-            // alert(id);
-            var cart_product_id = $('.cart_product_id_' + id).val();
-            var cart_product_name = $('.cart_product_name_' + id).val();
-            var cart_product_image = $('.cart_product_image_' + id).val();
-            var cart_product_quantity = $('.cart_product_quantity_' + id).val();
-            var cart_product_price = $('.cart_product_price_' + id).val();
-            var cart_product_qty = $('.cart_product_qty_' + id).val();
-            var _token = $('input[name="_token"]').val();
-
-            if (parseInt(cart_product_qty) > parseInt(cart_product_quantity)) {
-                alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
-            } else {
-
-                $.ajax({
-                    url: '{{ url('/add-cart-ajax') }}',
-                    method: 'POST',
-                    data: {
-                        cart_product_id: cart_product_id,
-                        cart_product_name: cart_product_name,
-                        cart_product_image: cart_product_image,
-                        cart_product_price: cart_product_price,
-                        cart_product_qty: cart_product_qty,
-                        _token: _token,
-                        cart_product_quantity: cart_product_quantity
-                    },
-
-                    success: function() {
-                        show_quick_cart();
-                        // swal({
-                        //         title: "Đã thêm sản phẩm vào giỏ hàng",
-                        //         text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
-                        //         showCancelButton: true,
-                        //         cancelButtonText: "Xem tiếp",
-                        //         confirmButtonClass: "btn-success",
-                        //         confirmButtonText: "Đi đến giỏ hàng",
-                        //         closeOnConfirm: false
-                        //     },
-
-                        //     function() {
-                        //         window.location.href = "{{ url('/gio-hang') }}";
-                        //     });
-
-                        //     document.getElementsByClassName("home_cart_"+id)[0].style.display = "none";
-                        //     document.getElementsByClassName("rm_home_cart_"+id)[0].style.display = "inline";
-
-
-                        //   show_cart();
-                        //   hover_cart();
-                        // cart_session();
-                    }
-
-                });
-            }
+            alert('Vui lòng vào trang chi tiết để đặt hàng.');
         }
     </script>
     <!--add to  cart quickview-->
@@ -1743,18 +1692,24 @@
             }
 
             // Initialize default state
-            const defaultPrice = $('.cart_price_attribute').val(); // Set default price if needed
+            const defaultPrice = $('.cart_product_price').val(); // Set default price if needed
             //$('#price_init').text('Giá ' + formatPrice(defaultPrice)); // Default price display
             $('#price_after_click').hide(); // Initially hide price_after_click
             $('.cart_price_attribute').val(defaultPrice); // Set the hidden input value to default price
 
             // Click event for attribute selection
             $('.pro_attr_image_click').click(function() {
+
                 var key_image = $(this).data('key_image'); // Get the key_image value
                 var newPrice = $(this).data('price_attribute'); // Get the price of the clicked attribute
 
+                var newId = $('product_id').val();
+                var newIdAttribute = $(this).data('id_attribute');
+
                 // Set the value of the hidden input
-                $('.cart_price_attribute').val(newPrice); // Update the hidden input with the selected price
+
+                $('.cart_product_id_attribute').val(
+                    0);
 
                 // Toggle behavior: if already clicked (active), unclick it
                 if ($(this).hasClass('active')) {
@@ -1768,6 +1723,10 @@
                     // Optionally, you can also reset the slider if needed
                     slider.goToSlide(0); // Go back to the first slide
                 } else {
+
+                    $('.cart_product_id_attribute').val(
+                        newIdAttribute);
+
                     // If not active, update price and show the clicked price
                     $('#price_after_click').text('Giá ' + formatPrice(newPrice)).show();
                     $('#price_init').hide(); // Hide the initial price

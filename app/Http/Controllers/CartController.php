@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Cart;
 use Carbon\Carbon;
 use App\Models\Coupon;
+use App\Models\Product;
+use App\Models\ProductAttribute;
 
 session_start();
 class CartController extends Controller
@@ -152,45 +154,71 @@ class CartController extends Controller
     }
     public function add_cart_ajax(Request $request)
     {
-        // Session::forget('cart');
+        // Validate incoming data
         $data = $request->all();
         $session_id = substr(md5(microtime()), rand(0, 26), 5);
         $cart = Session::get('cart');
-        if ($cart == true) {
-            $is_avaiable = 0;
-            foreach ($cart as $key => $val) {
-                if ($val['product_id'] == $data['cart_product_id']) {
-                    $is_avaiable++;
+
+        // Initialize product variables
+        $product_no_attribute = null;
+        $product_attribute = null;
+        $product_name = Product::where('product_id', $data['id_product'])->first();
+        // Fetch product or attribute details
+        if ($data['id_attribute'] == 0) {
+            $product_no_attribute = Product::where('product_id', $data['id_product'])->first();
+            if (!$product_no_attribute) {
+                return response()->json(['error' => 'Product not found.'], 404);
+            }
+        } elseif ($data['id_attribute'] != 0) {
+            $product_attribute = ProductAttribute::with('product')
+                ->where('product_id', $data['id_product'])
+                ->where('id', $data['id_attribute'])
+                ->first();
+            if (!$product_attribute) {
+                return response()->json(['error' => 'Product attribute not found.'], 404);
+            }
+        }
+
+        // Check if product already exists in the cart
+        $is_avaiable = false;
+        if ($cart) {
+            foreach ($cart as $key => $cart_val) {
+                if (
+                    $cart_val['product_id'] == $data['id_product'] &&
+                    $cart_val['product_attribute'] == ($product_attribute->id ?? null)
+                ) {
+                    // If the product already exists, increment the quantity
+                    $cart[$key]['product_qty'] += $data['cart_product_qty'] ?? 1;
+                    $is_avaiable = true;
+                    break;
                 }
             }
-            if ($is_avaiable == 0) {
-                $cart[] = array(
-                    'session_id' => $session_id,
-                    'product_name' => $data['cart_product_name'],
-                    'product_id' => $data['cart_product_id'],
-                    'product_image' => $data['cart_product_image'],
-                    'product_quantity' => $data['cart_product_quantity'],
-                    'product_qty' => $data['cart_product_qty'],
-                    'product_price' => $data['cart_product_price'],
-                );
-                Session::put('cart', $cart);
-            }
-        } else {
-            $cart[] = array(
-                'session_id' => $session_id,
-                'product_name' => $data['cart_product_name'],
-                'product_id' => $data['cart_product_id'],
-                'product_image' => $data['cart_product_image'],
-                'product_quantity' => $data['cart_product_quantity'],
-                'product_qty' => $data['cart_product_qty'],
-                'product_price' => $data['cart_product_price'],
+        }
 
-            );
+        // Add new product to cart if not available
+        if (!$is_avaiable) {
+            $cart[] = [
+                'session_id' => $session_id,
+                'product_attribute_id' => $product_attribute->id ?? null,
+                'product_attribute' => $product_no_attribute->product_name ?? $product_attribute->name ?? 'Unknown',
+                'product_name' => $product_name->product_name,
+                'product_id' => $product_no_attribute->product_id ?? $product_attribute->product_id ?? 0,
+                'product_image' => $product_no_attribute->product_image ?? $product_attribute->image ?? 'default.png',
+                'product_quantity' => $data['cart_product_quantity'] ?? 1,
+                'product_qty' => $data['cart_product_qty'] ?? 1,
+                'product_price' => $product_no_attribute->product_price ?? $product_attribute->price ?? 0,
+            ];
+
             Session::put('cart', $cart);
         }
 
+        // Save session
         Session::save();
+
+        return response()->json(['success' => 'Product added to cart successfully.']);
     }
+
+
     public function show_quick_cart()
     {
         $output = '

@@ -95,7 +95,11 @@
                                     $key++;
                                 @endphp
                                 <div class="col-md-2 box-attribute pro_attr_image_click"
-                                    data-key_image="{{ $key }}" data-price_attribute="{{ $pro_attr->price }}">
+                                    data-key_image="{{ $key }}" data-id_attribute="{{ $pro_attr->id }}"
+                                    data-name_attribute="{{ $pro_attr->name }}"
+                                    data-price_attribute="{{ $pro_attr->price }}"
+                                    data-qty_attribute="{{ $pro_attr->quantity }}"
+                                    data-image_attribute="{{ $pro_attr->image }}">
                                     <p class="attr_name">{{ $pro_attr->name }}</p>
                                     <img class="img img-responsive" width="100%"
                                         src="{{ asset('/uploads/attribute/' . $pro_attr->image) }}">
@@ -108,38 +112,24 @@
                     {{-- <img src="images/product-details/rating.png" alt="" /> --}}
 
                     <form>
+
                         @csrf
 
-
-                        <input type="hidden" value="{{ $value->product_id }}"
-                            class="cart_product_id_{{ $value->product_id }}">
-
-                        <input type="hidden" id="product_viewed{{ $value->product_id }}"
-                            value="{{ $value->product_name }}" class="cart_product_name_{{ $value->product_id }}">
-
-                        <input type="hidden" value="{{ $value->product_image }}"
-                            class="cart_product_image_{{ $value->product_id }}">
-
-                        <input type="hidden" value="{{ $value->product_quantity }}"
-                            class="cart_product_quantity_{{ $value->product_id }}">
-
-                        <input type="hidden" value="{{ $value->product_price }}"
-                            class="cart_product_price_{{ $value->product_id }}">
+                        <input type="hidden" class="cart_product_id_attribute" value="0">
+                        <input type="hidden" class="product_id" value="{{ $value->product_id }}">
 
                         <span>
                             <input type="hidden" class="cart_price_attribute" value="{{ $value->product_price }}">
-                            <input type="hidden" class="cart_name_attribute">
 
                             <span id="price_init">Giá {{ number_format($value->product_price, 0, ',', '.') }}</span>
                             <span id="price_after_click">Giá {{ number_format($value->product_price, 0, ',', '.') }}</span>
 
                             <label>Số lượng:</label>
-                            <input name="qty" type="number" min="1"
-                                class="cart_product_qty_{{ $value->product_id }}" value="1" />
-                            <input name="productid_hidden" type="hidden" value="{{ $value->product_id }}" />
+                            <input name="qty" type="number" min="1" max="50" class="cart_product_qty"
+                                value="1" />
                         </span>
                         <input type="button" value="Thêm giỏ hàng" class="btn btn-primary btn-sm add-to-cart"
-                            data-id_product="{{ $value->product_id }}" name="add-to-cart">
+                            name="add-to-cart">
                     </form>
 
                     <p><b>Tình trạng:</b> Còn hàng</p>

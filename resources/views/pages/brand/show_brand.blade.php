@@ -33,8 +33,9 @@
 
 
                                     </a>
-                                    <input type="button" value="Thêm giỏ hàng" class="btn btn-default add-to-cart"
-                                        data-id_product="{{ $product->product_id }}" name="add-to-cart">
+                                    <input type="button" value="Thêm giỏ hàng" onclick="Addtocart()"
+                                        class="btn btn-default" data-id_product="{{ $product->product_id }}"
+                                        name="add-to-cart">
                                 </form>
 
                             </div>

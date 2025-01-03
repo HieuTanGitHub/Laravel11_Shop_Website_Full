@@ -164,8 +164,13 @@
 
                                                 <tr>
                                                     <td class="cart_product">
-                                                        <img src="{{ asset('uploads/product/' . $cart['product_image']) }}"
-                                                            width="90" alt="{{ $cart['product_name'] }}" />
+                                                        @if (!$cart['product_attribute_id'])
+                                                            <img src="{{ asset('uploads/product/' . $cart['product_image']) }}"
+                                                                width="90" alt="{{ $cart['product_name'] }}" />
+                                                        @else
+                                                            <img src="{{ asset('uploads/attribute/' . $cart['product_image']) }}"
+                                                                width="90" alt="{{ $cart['product_name'] }}" />
+                                                        @endif
                                                     </td>
                                                     <td class="cart_description">
                                                         <h4><a href=""></a></h4>

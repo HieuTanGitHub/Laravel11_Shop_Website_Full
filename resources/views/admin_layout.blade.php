@@ -175,6 +175,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-book"></i>
+                                <span>Thuộc tính</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ route('attribute.create') }}">Thêm thuộc tính</a></li>
+                                <li><a href="{{ route('attribute.index') }}">Liệt kê thuộc tính</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
                                 <span>Danh mục bài viết</span>
                             </a>
                             <ul class="sub">
@@ -308,11 +319,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
-                    <p>Các bạn xem hướng dẫn tạo project : <a target="_blank"
-                            href="https://www.youtube.com/watch?v=CjA79XhHVQI&list=PLWTu87GngvNxpWN6FVuEcS-YvFNq6RnqG">tại
-                            đây nhé</a></p>
+                    <p>&copy; <span id="year"></span> Your Company Name. All Rights Reserved.</p>
                 </div>
             </div>
+
+            <script>
+                document.getElementById('year').textContent = new Date().getFullYear();
+            </script>
             <!-- / footer -->
         </section>
         <!--main content end-->

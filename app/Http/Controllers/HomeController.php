@@ -46,20 +46,18 @@ class HomeController extends Controller
                 <div class="productinfo text-center">
 
 
-                <input type="hidden" value="' . $pro->product_id . '" class="cart_product_id_' . $pro->product_id . '">
+               
 
                 <input type="hidden" id="wishlist_productname' . $pro->product_id . '" value="' . $pro->product_name . '" class="cart_product_name_' . $pro->product_id . '">
 
-                <input type="hidden" value="' . $pro->product_quantity . '" class="cart_product_quantity_' . $pro->product_id . '">
-
-                <input type="hidden" value="' . $pro->product_image . '" class="cart_product_image_' . $pro->product_id . '">
+              
 
                 <input type="hidden" id="wishlist_productprice' . $pro->product_id . '" value="' . number_format($pro->product_price, 0, ',', '.') . 'VNĐ">
 
 
-                <input type="hidden" value="' . $pro->product_price . '" class="cart_product_price_' . $pro->product_id . '">
+              
 
-                <input type="hidden" value="1" class="cart_product_qty_' . $pro->product_id . '">
+              
 
                 <a id="wishlist_producturl' . $pro->product_id . '"  href="' . url('chi-tiet/' . $pro->product_slug) . '">
 
@@ -71,7 +69,8 @@ class HomeController extends Controller
 
                 </a>
 
-
+                <input type="hidden" class="cart_product_id_attribute" value="0">
+                <input type="hidden" class="product_id" value="' . $pro->product_id . '">
                 <button class="btn btn-default home_cart_' . $pro->product_id . '" id="' . $pro->product_id . '" onclick="Addtocart(this.id);"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
 
                 <button style="display:none" class="btn btn-danger rm_home_cart_' . $pro->product_id . '" id="' . $pro->product_id . '" onclick="Deletecart(this.id);"><i class="fa fa-shopping-cart"></i>Bỏ đã thêm</button>

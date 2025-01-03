@@ -125,8 +125,9 @@
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
-
+                            <th>Id</th>
                             <th>Tên sản phẩm</th>
+                            <th>Thuộc tính sản phẩm</th>
                             <th>Số lượng kho còn</th>
                             <th>Mã giảm giá</th>
                             <th>Phí ship hàng</th>
@@ -151,9 +152,11 @@
                             @endphp
                             <tr class="color_qty_{{ $details->product_id }}">
 
-                                <td><i>{{ $i }}</i></td>
+                                <td>{{ $key }}</td>
                                 <td>{{ $details->product_name }}</td>
+                                <td>{{ $details->product_attribute }}</td>
                                 <td>{{ $details->product->product_quantity }}</td>
+
                                 <td>
                                     @if ($details->product_coupon != 'no')
                                         {{ $details->product_coupon }}
@@ -164,7 +167,8 @@
                                 <td>{{ number_format($details->product_feeship, 0, ',', '.') }}đ</td>
                                 <td>
 
-                                    <input type="number" min="1" readonly {{ $order_status == 2 ? 'disabled' : '' }}
+                                    <input type="number" min="1" readonly
+                                        {{ $order_status == 2 ? 'disabled' : '' }}
                                         class="order_qty_{{ $details->product_id }}"
                                         value="{{ $details->product_sales_quantity }}" name="product_sales_quantity">
 

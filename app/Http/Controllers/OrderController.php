@@ -291,6 +291,7 @@ class OrderController extends Controller
 		<thead>
 		<tr>
 		<th>Tên sản phẩm</th>
+		<th>Thuộc tính sản phẩm</th>
 		<th>Mã giảm giá</th>
 		<th>Phí ship</th>
 		<th>Số lượng</th>
@@ -316,6 +317,7 @@ class OrderController extends Controller
 			$output .= '		
 			<tr>
 			<td>' . $product->product_name . '</td>
+			<td>' . $product->product_attribute . '</td>
 			<td>' . $product_coupon . '</td>
 			<td>' . number_format($product->product_feeship, 0, ',', '.') . 'đ' . '</td>
 			<td>' . $product->product_sales_quantity . '</td>
