@@ -22,7 +22,7 @@ class Admin extends Authenticatable
 
 	public function roles()
 	{
-		return $this->belongsToMany('App\Roles');
+		return $this->belongsToMany('App\Models\Roles');
 	}
 
 	public function getAuthPassword()

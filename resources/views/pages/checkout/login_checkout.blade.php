@@ -47,16 +47,17 @@
                             <li>
                                 <a href="{{ url('login-customer-google') }}">
                                     <img width="10%" alt="Đăng nhập bằng tài khoản google"
-                                        src="{{ asset('frontend/images/gg.png') }}">
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRB4kg1jgnqD5fEaCSHKMoUdFeTBj9CH_opA&s">
+                                    <h5>Login by Google</h5>
                                 </a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="{{ url('login-facebook-customer') }}">
                                     <img width="10%" alt="Đăng nhập bằng tài khoản facebook"
                                         src="{{ asset('frontend/images/fb.png') }}">
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
 
 

@@ -172,6 +172,12 @@
                                             hàng </a>
 
                                     </li>
+                                    <li>
+                                        <a href="{{ URL::to('dang-xuat-khach-hang') }}"><i
+                                                class="fa fa-sign-out"></i> Đăng xuất
+                                        </a>
+
+                                    </li>
                                 @else
                                     @if ($customer_id != null)
                                         <li>
@@ -226,7 +232,7 @@
                                                     </a><i class="fa fa-angle-right"></i>
                                                     <ul class="cate_sub">
                                                         @foreach ($category as $key => $cate_sub)
-                                                            @if ($cate_sub->category_parent == $cate->category_id)
+                                                            @if ($cate_sub->category_parent == $cate->category_id && $cate_sub->category_status == 0)
                                                                 <li class="submenu-item">
                                                                     <a
                                                                         href="{{ URL::to('/danh-muc/' . $cate_sub->slug_category_product) }}">

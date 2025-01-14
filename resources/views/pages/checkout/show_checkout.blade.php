@@ -35,15 +35,15 @@
                             <div class="col-md-6 form-style">
                                 <form method="POST">
                                     @csrf
-                                    <input type="text" name="shipping_email" class="shipping_email form-control"
+                                    <input type="text" name="shipping_email" required class="shipping_email form-control"
                                         placeholder="Điền email">
-                                    <input type="text" name="shipping_name" class="shipping_name form-control"
+                                    <input type="text" name="shipping_name" required class="shipping_name form-control"
                                         placeholder="Họ và tên người gửi">
-                                    <input type="text" name="shipping_address" class="shipping_address form-control"
-                                        placeholder="Địa chỉ gửi hàng">
-                                    <input type="text" name="shipping_phone" class="shipping_phone form-control"
+                                    <input type="text" name="shipping_address" required
+                                        class="shipping_address form-control" placeholder="Địa chỉ gửi hàng">
+                                    <input type="text" name="shipping_phone" required class="shipping_phone form-control"
                                         placeholder="Số điện thoại">
-                                    <textarea name="shipping_notes" class="shipping_notes form-control" placeholder="Ghi chú đơn hàng của bạn"
+                                    <textarea name="shipping_notes" required class="shipping_notes form-control" placeholder="Ghi chú đơn hàng của bạn"
                                         rows="5"></textarea>
 
                                     @if (Session::get('fee'))

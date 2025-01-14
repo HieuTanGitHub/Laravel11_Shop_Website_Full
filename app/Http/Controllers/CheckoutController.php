@@ -100,8 +100,8 @@ class CheckoutController extends Controller
     $code_cart = rand(00, 9999);
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     $vnp_Returnurl = "http://localhost:8080/weblinhkienmaytinh/checkout";
-    $vnp_TmnCode = "8W2JFA54"; //Mã website tại VNPAY 
-    $vnp_HashSecret = "OQMXMJWVMXVNLHATHVQTFMLIDZWRADZO"; //Chuỗi bí mật
+    $vnp_TmnCode = "1VYBIYQP"; //Mã website tại VNPAY 
+    $vnp_HashSecret = "NOH6MBGNLQL9O9OMMFMZ2AX8NIEP50W1"; //Chuỗi bí mật
 
     $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
     $vnp_OrderInfo = 'Thanh toán đơn hàng test';
@@ -398,6 +398,12 @@ class CheckoutController extends Controller
       return Redirect::to('admin')->send();
     }
   }
+  public function dang_xuat_khachhang()
+  {
+    Session::forget('customer_id');
+    return redirect()->back();
+  }
+
   public function calculate_fee(Request $request)
   {
     $data = $request->all();

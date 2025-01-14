@@ -206,7 +206,7 @@ class HomeController extends Controller
             $product = Product::where('product_status', 0)->where('product_name', 'LIKE', '%' . $data['query'] . '%')->get();
 
             $output = '
-            <ul class="dropdown-menu" style="display:block; position:relative">';
+            <ul class="dropdown-menu" style="display:block; position:absolute">';
 
             foreach ($product as $key => $val) {
                 $output .= '

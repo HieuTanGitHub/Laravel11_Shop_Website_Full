@@ -165,11 +165,11 @@ Route::get('/add-product', [ProductController::class, 'add_product']);
 Route::get('/edit-product/{product_id}', [ProductController::class, 'edit_product']);
 
 
-Route::get('users', [UserController::class, 'index'])->middleware('auth.roles');
-Route::get('add-users', [UserController::class, 'add_users'])->middleware('auth.roles');
-Route::get('delete-user-roles/{admin_id}', [UserController::class, 'delete_user_roles'])->middleware('auth.roles');
+Route::get('users', [UserController::class, 'index']);
+Route::get('add-users', [UserController::class, 'add_users']);
+Route::get('delete-user-roles/{admin_id}', [UserController::class, 'delete_user_roles']);
 Route::post('store-users', [UserController::class, 'store_users']);
-Route::post('assign-roles', [UserController::class, 'assign_roles'])->middleware('auth.roles');
+Route::post('assign-roles', [UserController::class, 'assign_roles']);
 
 Route::get('impersonate/{admin_id}', [UserController::class, 'impersonate']);
 Route::get('impersonate-destroy', [UserController::class, 'impersonate_destroy']);
@@ -215,6 +215,8 @@ Route::get('/cart-session', [CartController::class, 'cart_session']);
 
 //Checkout
 Route::get('/dang-nhap', [CheckoutController::class, 'login_checkout']);
+Route::get('/dang-xuat-khach-hang', [CheckoutController::class, 'dang_xuat_khachhang']);
+
 Route::get('/del-fee',  [CheckoutController::class, 'del_fee']);
 
 Route::get('/logout-checkout',  [CheckoutController::class, 'logout_checkout']);
