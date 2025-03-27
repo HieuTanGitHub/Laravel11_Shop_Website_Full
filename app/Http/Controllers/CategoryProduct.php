@@ -269,8 +269,9 @@ class CategoryProduct extends Controller
             <div class="single-products">
             <div class="productinfo text-center">
             <img src="' . url('uploads/product/' . $val->product_image) . '" alt="' . $val->product_name . '" />
+              <p class="tieude-product_name">' . $val->product_name . '</p>
             <h2>' . number_format($val->product_price, 0, ',', '.') . ' VNĐ</h2>
-            <p>' . $val->product_name . '</p>
+          
             </a>
               
                

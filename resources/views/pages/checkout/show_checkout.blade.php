@@ -354,18 +354,14 @@
                                             <button type="submit" class="btn btn-success check_out"
                                                 name="redirect">Thanh toán VNPAY</button>
                                         </form>
+
                                         <form action="{{ url('/momo_payment') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="total_momo" value="{{ $total_after }}">
                                             <button type="submit" class="btn btn-default check_out" name="payUrl">Thanh
                                                 toán MOMO</button>
                                         </form>
-                                        {{-- <form action="{{ url('/onepay_payment') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="total_onepay" value="{{ $total_after }}">
-                                            <button type="submit" class="btn btn-default check_out">Thanh toán
-                                                ONEPAY</button>
-                                        </form> --}}
+
                                     </td>
                                 </tr>
                             @endif

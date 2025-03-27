@@ -20,32 +20,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        $admin = Admin::with('roles')->orderBy('admin_id', 'DESC')->paginate(5);
-        return view('admin.users.all_users')->with(compact('admin'));;
+        $admin = User::with('roles')->orderBy('id', 'DESC')->paginate(5);
+        $roles = Roles::orderBy('id', 'DESC')->get();
+        return view('admin.users.all_users')->with(compact('admin', 'roles'));;
     }
-    public function impersonate($admin_id)
-    {
-        $user = User::where('id', $admin_id)->first();
-        if ($user) {
-            session()->put('impersonate', $user->id);
-        }
-        return redirect('/dashboard');
-    }
-    public function impersonate_destroy()
-    {
-        session()->forget('impersonate');
-        return redirect('/users');
-    }
+
     public function add_users()
     {
         return view('admin.users.add_users');
     }
     public function delete_user_roles($admin_id)
     {
-        if (Auth::id() == $admin_id) {
+        if (User::find($admin_id)) {
             return redirect()->back()->with('message', 'Bạn không được quyền xóa chính mình');
         }
-        $admin = Admin::find($admin_id);
+        $admin = User::find($admin_id);
 
         if ($admin) {
             $admin->roles()->detach();
@@ -55,34 +44,42 @@ class UserController extends Controller
     }
     public function assign_roles(Request $request)
     {
-
-        if (Auth::id() == $request->admin_id) {
+        // Prevent assigning roles to the current authenticated user
+        if (User::find($request->admin_id)) {
             return redirect()->back()->with('message', 'Bạn không được phân quyền chính mình');
         }
 
-        $user = Admin::where('admin_email', $request->admin_email)->first();
+        // Fetch the user by email
+        $user = User::where('email', $request->admin_email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+
+        // Detach existing roles
         $user->roles()->detach();
 
-        if ($request->author_role) {
-            $user->roles()->attach(Roles::where('name', 'author')->first());
+        // Attach new roles dynamically based on the submitted checkboxes
+        if ($request->has('roles')) {
+            foreach ($request->roles as $role) {
+                $roleModel = Roles::where('name', $role)->first();
+                if ($roleModel) {
+                    $user->roles()->attach($roleModel);
+                }
+            }
         }
-        if ($request->user_role) {
-            $user->roles()->attach(Roles::where('name', 'user')->first());
-        }
-        if ($request->admin_role) {
-            $user->roles()->attach(Roles::where('name', 'admin')->first());
-        }
+
         return redirect()->back()->with('message', 'Cấp quyền thành công');
     }
 
     public function store_users(Request $request)
     {
         $data = $request->all();
-        $admin = new Admin();
-        $admin->admin_name = $data['admin_name'];
-        $admin->admin_phone = $data['admin_phone'];
-        $admin->admin_email = $data['admin_email'];
-        $admin->admin_password = md5($data['admin_password']);
+        $admin = new User();
+        $admin->name = $data['admin_name'];
+        $admin->phone = $data['admin_phone'];
+        $admin->email = $data['admin_email'];
+        $admin->password = md5($data['admin_password']);
         $admin->roles()->attach(Roles::where('name', 'user')->first());
         $admin->save();
         Session::put('message', 'Thêm users thành công');

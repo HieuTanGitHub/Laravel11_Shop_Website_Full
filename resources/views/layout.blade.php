@@ -55,8 +55,7 @@
                     <div class="col-sm-8">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i><span style="color:red">
-                                            Hotline:</span> 0932023992</a></li>
+
 
                             </ul>
                         </div>
@@ -83,13 +82,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
+                        {{-- @foreach ($contact_footer as $key => $logo)
+                            <p><img width="100%" src="{{ asset('uploads/contact/' . $logo->info_logo) }}">
+                            </p>
+                            <p>{{ $logo->slogan_logo }}</p>
+                        @endforeach --}}
                         <div class="logo pull-left">
                             <a href="{{ url('/') }}"><img src="{{ 'frontend/images/home/logo.png' }}"
                                     alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
+
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa"
+
+                                {{-- <button type="button" class="btn btn-default dropdown-toggle usa"
                                     data-toggle="dropdown">
                                     Ngôn Ngữ
                                     <span class="caret"></span>
@@ -98,11 +104,11 @@
                                     <li><a href="{{ url('lang/vi') }}">Tiếng Việt</a></li>
                                     <li><a href="{{ url('lang/en') }}">Tiếng Anh</a></li>
                                     <li><a href="{{ url('lang/cn') }}">Tiếng Trung</a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
 
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa"
+                                {{-- <button type="button" class="btn btn-default dropdown-toggle usa"
                                     data-toggle="dropdown">
                                     DOLLAR
                                     <span class="caret"></span>
@@ -110,7 +116,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Canadian Dollar</a></li>
                                     <li><a href="#">Pound</a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </div>
                     </div>
@@ -126,18 +132,21 @@
                                    $shipping_id = Session::get('shipping_id');
                                    if($customer_id!=NULL && $shipping_id==NULL){ 
                                  ?>
-                                <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-credit-card"></i>
+                                        Thanh
                                         toán</a></li>
 
                                 <?php
                                  }elseif($customer_id!=NULL && $shipping_id!=NULL){
                                  ?>
-                                <li><a href="{{ URL::to('/payment') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                <li><a href="{{ URL::to('/payment') }}"><i class="fa fa-credit-card"></i>
+                                        Thanh
                                         toán</a></li>
                                 <?php 
                                 }else{
                                 ?>
-                                <li><a href="{{ URL::to('/dang-nhap') }}"><i class="fa fa-crosshairs"></i> Thanh
+                                <li><a href="{{ URL::to('/dang-nhap') }}"><i class="fa fa-credit-card"></i>
+                                        Thanh
                                         toán</a></li>
                                 <?php
                                  }
@@ -221,7 +230,7 @@
 
                                 <li><a href="{{ URL::to('/trang-chu') }}" class="active">Trang chủ</a></li>
                                 <li class="dropdown">
-                                    <a href="#">Danh mục <i class="fa fa-angle-down"></i></a>
+                                    <a href="#">Danh mục sản phẩm <i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         @foreach ($category as $key => $cate)
                                             @if ($cate->category_parent == 0)
@@ -261,7 +270,7 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="{{ URL::to('/gio-hang') }}">Cart
+                                <li><a href="{{ URL::to('/gio-hang') }}">Giỏ hàng
 
                                         <span class="show-cart"></span>
 
@@ -269,7 +278,7 @@
 
                                 </li>
 
-                                <li><a href="{{ URL::to('/lien-he') }}">Contact</a></li>
+                                <li><a href="{{ URL::to('/lien-he') }}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -361,7 +370,7 @@
     </section>
 
     <footer id="footer"><!--Footer-->
-        <div class="footer-top">
+        {{-- <div class="footer-top">
             <div class="container">
                 <div class="row">
                     @foreach ($contact_footer as $key => $logo)
@@ -379,7 +388,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="footer-widget">
             <div class="container">
@@ -436,7 +445,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2021 ShopHieu.com</p>
+                    <p class="pull-left">Copyright © 2025 ShopLaptop.com</p>
 
                 </div>
             </div>

@@ -3,18 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role as SpatieRole;
+use Spatie\Permission\Traits\HasRoles;
 
 class Roles extends Model
 {
+	use HasRoles;
 	public $timestamps = false; //set time to false
 	protected $fillable = [
 		'name'
 	];
-	protected $primaryKey = 'id_roles';
-	protected $table = 'tbl_roles';
-
-	public function admin()
-	{
-		return $this->belongsToMany('App\Models\Admin');
-	}
+	protected $primaryKey = 'id	';
+	protected $table = 'roles';
 }

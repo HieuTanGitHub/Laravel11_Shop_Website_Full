@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--logo start-->
             <div class="brand">
                 <a target="_blank" href="{{ url('/') }}" class="logo">
-                    Shop
+                    CMS SHOP
                 </a>
                 <div class="sidebar-toggle-box">
                     <div class="fa fa-bars"></div>
@@ -112,7 +112,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--sidebar start-->
         <aside>
             <div id="sidebar" class="nav-collapse">
-                <!-- sidebar menu start-->
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
@@ -122,26 +121,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </a>
                         </li>
 
-                        {{-- <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-book"></i>
-                                <span>Users</span>
-                            </a>
-                            <ul class="sub">
-
-                                <li><a href="{{ URL::to('/index-spatie') }}">Liệt kê vai trò quyền user</a></li>
-
-                            </ul>
-                        </li> --}}
                         <li>
                             <a href="{{ URL::to('/information') }}">
-                                <i class="fa fa-dashboard"></i>
+                                <i class="fa fa-info-circle"></i>
                                 <span>Thông tin website</span>
                             </a>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-tags"></i>
                                 <span>Mã giảm giá</span>
                             </a>
                             <ul class="sub">
@@ -149,74 +138,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="{{ URL::to('/list-coupon') }}">Liệt kê mã giảm giá</a></li>
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-truck"></i>
                                 <span>Vận chuyển</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/delivery') }}">Quản lý vận chuyển</a></li>
-
-
-
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-list"></i>
                                 <span>Danh mục sản phẩm</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/add-category-product') }}">Thêm danh mục sản phẩm</a></li>
                                 <li><a href="{{ URL::to('/all-category-product') }}">Liệt kê danh mục sản phẩm</a></li>
-
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-cogs"></i>
                                 <span>Thuộc tính</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ route('attribute.create') }}">Thêm thuộc tính</a></li>
                                 <li><a href="{{ route('attribute.index') }}">Liệt kê thuộc tính</a></li>
-
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-edit"></i>
                                 <span>Danh mục bài viết</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/add-category-post') }}">Thêm danh mục bài viết</a></li>
                                 <li><a href="{{ URL::to('/all-category-post') }}">Liệt kê danh mục bài viết</a></li>
-
                             </ul>
                         </li>
-                        {{-- <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Thương hiệu sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="{{URL::to('/add-brand-product')}}">Thêm hiệu sản phẩm</a></li>
-                        <li><a href="{{URL::to('/all-brand-product')}}">Liệt kê thương hiệu sản phẩm</a></li>
-                      
-                    </ul>
-                </li> --}}
-
-                        {{--   <li>
-                    <a href="{{URL::to('read_data')}}">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Google drive</span>
-                    </a>
-                </li> --}}
-
 
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-sliders"></i>
                                 <span>Slider</span>
                             </a>
                             <ul class="sub">
@@ -225,22 +193,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
 
-                        </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-shopping-cart"></i>
                                 <span>Đơn hàng</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/manage-order') }}">Quản lý đơn hàng</a></li>
-
-
                             </ul>
                         </li>
 
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-comments"></i>
                                 <span>Bình luận</span>
                             </a>
                             <ul class="sub">
@@ -248,67 +213,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </li>
 
-
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-cube"></i>
                                 <span>Sản phẩm</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/add-product') }}">Thêm sản phẩm</a></li>
                                 <li><a href="{{ URL::to('/all-product') }}">Liệt kê sản phẩm</a></li>
-
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-file-text"></i>
                                 <span>Bài viết</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/add-post') }}">Thêm bài viết</a></li>
                                 <li><a href="{{ URL::to('/all-post') }}">Liệt kê bài viết</a></li>
-
                             </ul>
                         </li>
+
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-video-camera"></i>
                                 <span>Video</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('video') }}">Thêm video</a></li>
-
-
                             </ul>
                         </li>
 
-                        {{-- <li>
-
-                            <span><a href="{{ URL::to('/impersonate-destroy') }}">Stop chuyển quyền</a></span>
-
-                        </li> --}}
-
-
-                        {{-- @hasrole(['admin', 'author']) --}}
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-users"></i>
                                 <span>Users</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ URL::to('/add-users') }}">Thêm user</a></li>
                                 <li><a href="{{ URL::to('/users') }}">Liệt kê user</a></li>
-
+                                <li><a href="{{ URL::to('/index-spatie') }}">Liệt kê vai trò quyền user</a></li>
                             </ul>
                         </li>
-                        {{-- @endhasrole --}}
-
                     </ul>
                 </div>
-                <!-- sidebar menu end-->
             </div>
         </aside>
+
         <!--sidebar end-->
         <!--main content start-->
         <section id="main-content">

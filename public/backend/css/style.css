@@ -117,8 +117,8 @@ ul.sidebar-menu,ul.sidebar-menu li ul.sub {
     padding:0;
 }
 ul.sidebar-menu {
-    padding-top:80px;
-
+    background: cadetblue;
+    padding-top: 80px;
 }
 #sidebar>ul>li>ul.sub {
     display:none;

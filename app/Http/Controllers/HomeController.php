@@ -63,9 +63,9 @@ class HomeController extends Controller
 
 
                 <img id="wishlist_productimage' . $pro->product_id . '" src="' . url('uploads/product/' . $pro->product_image) . '" alt="' . $pro->product_name . '" />
-
+                  <p class="tieude-product_name">' . $pro->product_name . '</p>
                 <h2>' . number_format($pro->product_price, 0, ',', '.') . 'VNĐ</h2>
-                <p>' . $pro->product_name . '</p>
+              
 
                 </a>
 
@@ -129,7 +129,7 @@ class HomeController extends Controller
         //seo 
         $meta_desc = "Chuyên bán những phụ kiện ,thiết bị game";
         $meta_keywords = "thiet bi game,phu kien game,game phu kien,game giai tri";
-        $meta_title = "Phụ kiện,máy chơi game chính hãng";
+        $meta_title = "Laravel 11 web bán hàng";
         $url_canonical = $request->url();
         //--seo
 

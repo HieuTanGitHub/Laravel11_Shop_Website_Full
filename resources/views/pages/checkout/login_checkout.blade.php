@@ -52,12 +52,7 @@
                                 </a>
                             </li>
 
-                            {{-- <li>
-                                <a href="{{ url('login-facebook-customer') }}">
-                                    <img width="10%" alt="Đăng nhập bằng tài khoản facebook"
-                                        src="{{ asset('frontend/images/fb.png') }}">
-                                </a>
-                            </li> --}}
+
                         </ul>
 
 
@@ -66,7 +61,7 @@
                 <div class="col-sm-1">
                     <h2 class="or">Hoặc</h2>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-6">
                     <div class="signup-form"><!--sign up form-->
                         <h2>Đăng ký</h2>
                         <form action="{{ URL::to('/add-customer') }}" method="POST">

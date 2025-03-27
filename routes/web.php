@@ -368,8 +368,9 @@ Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])
 
 //Cổng thanh toán
 Route::post('/vnpay_payment', [CheckoutController::class, 'vnpay_payment']);
+
 Route::post('/momo_payment', [CheckoutController::class, 'momo_payment']);
-Route::post('/onepay_payment', [CheckoutController::class, 'onepay_payment']);
+
 
 Auth::routes();
 

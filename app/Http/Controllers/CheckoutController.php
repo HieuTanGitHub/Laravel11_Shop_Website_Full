@@ -58,19 +58,22 @@ class CheckoutController extends Controller
     $partnerCode = 'MOMOBKUN20180529';
     $accessKey = 'klm05TvNBzhg7h7j';
     $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-    $orderInfo = "Thanh toán qua ATM MoMo";
+
+
+    $orderInfo = "Thanh toán qua MoMo";
     $amount = $_POST['total_momo'];
     $orderId = time() . "";
-    $redirectUrl = "http://localhost:8080/weblinhkienmaytinh/checkout";
-    $ipnUrl = "http://localhost:8080/weblinhkienmaytinh/checkout";
+    $redirectUrl = "http://127.0.0.1:8000/checkout";
+    $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
     $extraData = "";
 
     $requestId = time() . "";
-    $requestType = "payWithATM";
+    $requestType = "payWithATM"; //captureWithWallet
     // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
     //before sign HMAC SHA256 signature
     $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
     $signature = hash_hmac("sha256", $rawHash, $secretKey);
+
     $data = array(
       'partnerCode' => $partnerCode,
       'partnerName' => "Test",
@@ -91,25 +94,29 @@ class CheckoutController extends Controller
 
     //Just a example, please check more in there
     return redirect()->to($jsonResult['payUrl']);
+    // dd($jsonResult);
 
-    header('Location: ' . $jsonResult['payUrl']);
+    //header('Location: ' . $jsonResult['payUrl']); php thuần
   }
   public function vnpay_payment(Request $request)
   {
     $data = $request->all();
-    $code_cart = rand(00, 9999);
+    $code_cart = rand(00, 9999); //mã đơn hàng : 1234
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    $vnp_Returnurl = "http://localhost:8080/weblinhkienmaytinh/checkout";
+    $vnp_Returnurl = "http://127.0.0.1:8000/checkout";
     $vnp_TmnCode = "1VYBIYQP"; //Mã website tại VNPAY 
     $vnp_HashSecret = "NOH6MBGNLQL9O9OMMFMZ2AX8NIEP50W1"; //Chuỗi bí mật
 
-    $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+    $vnp_TxnRef = rand(1, 10000); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
     $vnp_OrderInfo = 'Thanh toán đơn hàng test';
     $vnp_OrderType = 'billpayment';
     $vnp_Amount = $data['total_vnpay'] * 100;
     $vnp_Locale = 'vn';
-    $vnp_BankCode = 'NCB';
-    $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+    // $vnp_BankCode = 'NCB';
+    $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //127.0.0.1 or localhost
+
+    //$startTime = date("YmdHis");
+    //$expire = date('YmdHis', strtotime('+15 minutes', strtotime($startTime)));
 
     $inputData = array(
       "vnp_Version" => "2.1.0",
@@ -124,15 +131,15 @@ class CheckoutController extends Controller
       "vnp_OrderType" => $vnp_OrderType,
       "vnp_ReturnUrl" => $vnp_Returnurl,
       "vnp_TxnRef" => $vnp_TxnRef,
-
+      //"vnp_ExpireDate" => $expire
     );
 
     if (isset($vnp_BankCode) && $vnp_BankCode != "") {
       $inputData['vnp_BankCode'] = $vnp_BankCode;
     }
-    if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-      $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-    }
+    // if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+    //   $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+    // }
 
     //var_dump($inputData);
     ksort($inputData);
@@ -160,7 +167,8 @@ class CheckoutController extends Controller
       'data' => $vnp_Url
     );
     if (isset($_POST['redirect'])) {
-      header('Location: ' . $vnp_Url);
+      // header('Location: ' . $vnp_Url); 
+      return redirect()->to($vnp_Url);
       die();
     } else {
       echo json_encode($returnData);

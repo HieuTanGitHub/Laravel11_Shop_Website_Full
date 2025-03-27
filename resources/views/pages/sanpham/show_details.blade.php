@@ -1,5 +1,169 @@
 @extends('layout')
 @section('content')
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: none;
+            font-size: 14px;
+        }
+
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+        /* Product Details */
+        .product-details {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .product-information h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-information p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .product-information span {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ff5733;
+            font-weight: bold;
+        }
+
+        .product-information input.cart_product_qty {
+            width: 60px;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            background: #28a745;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-to-cart:hover {
+            background: #218838;
+        }
+
+        /* Attribute Selection */
+        .box-attribute {
+            border: 2px solid #ddd;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .box-attribute:hover,
+        .box-attribute.active {
+            border: 2px solid #ff9800;
+            background: #f8f9fa;
+        }
+
+        .box-attribute img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Image Gallery */
+        #imageGallery {
+            text-align: center;
+        }
+
+        #imageGallery img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Reviews */
+        #reviews {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .rating li {
+            display: inline-block;
+            font-size: 25px;
+            color: #ffcc00;
+            cursor: pointer;
+        }
+
+        /* Recommended Items */
+        .recommended_items {
+            margin-top: 40px;
+        }
+
+        .recommended_items h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .product-related {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .product-related:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-related img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-details {
+                padding: 15px;
+            }
+
+            .product-information h2 {
+                font-size: 20px;
+            }
+
+            .product-information span {
+                font-size: 16px;
+            }
+
+            .add-to-cart {
+                width: 100%;
+            }
+        }
+    </style>
     @foreach ($product_details as $key => $value)
         <input type="hidden" id="product_viewed_id" value="{{ $value->product_id }}">
         <input type="hidden" id="viewed_productname{{ $value->product_id }}" value="{{ $value->product_name }}">
