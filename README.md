@@ -72,3 +72,6 @@ php artisan serve
 
 Mở trình duyệt và truy cập:
 👉 http://localhost:8000
+
+## 🚀 6. Contact
+fb/hieutruong19 | zalo 0932023992 fix code, any question
