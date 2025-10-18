@@ -21,46 +21,54 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+# 🛍️ Laravel Shop Website (Laravel 11)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Dự án **Laravel11_Shop_Website_Full** là website thương mại điện tử được xây dựng bằng **Laravel 11**, hỗ trợ đầy đủ các tính năng quản lý sản phẩm, người dùng, giỏ hàng, thanh toán, v.v.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 1. Yêu cầu hệ thống
 
-## Laravel Sponsors
+Trước khi cài đặt, đảm bảo bạn đã cài:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **PHP >= 8.2**
+- **Composer**
+- **Node.js & npm**
+- **MySQL hoặc PostgreSQL**
+- **Git**
 
-### Premium Partners
+## 🧩 2. Clone source về máy
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+git clone https://github.com/HieuTanGitHub/Laravel11_Shop_Website_Full.git
 
-## Contributing
+Di chuyển vào thư mục dự án:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+cd Laravel11_Shop_Website_Full
 
-## Code of Conduct
+## ⚙️ 3. Cài đặt các thư viện PHP (vendor)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+composer install hay composer update
 
-## Security Vulnerabilities
+## 🛠️ 4. Cấu hình môi trường .env
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Mở file .env và sửa các thông tin kết nối database:
 
-## License
+APP_NAME="Laravel Shop"
+APP_URL=http://localhost:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tendb
+DB_USERNAME=root
+DB_PASSWORD=
+
+Tạo key cho ứng dụng:
+php artisan key:generate
+
+## ⚙️ 5. Chạy ứng dụng
+Chạy server Laravel:
+php artisan serve
+
+Mở trình duyệt và truy cập:
+👉 http://localhost:8000
