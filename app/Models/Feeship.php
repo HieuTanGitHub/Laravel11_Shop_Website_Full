@@ -18,14 +18,14 @@ class Feeship extends Model
 
 	public function city()
 	{
-		return $this->belongsTo('App\City', 'fee_matp');
+		return $this->belongsTo('App\Models\City', 'fee_matp');
 	}
 	public function province()
 	{
-		return $this->belongsTo('App\Province', 'fee_maqh');
+		return $this->belongsTo('App\Models\Province', 'fee_maqh');
 	}
 	public function wards()
 	{
-		return $this->belongsTo('App\Wards', 'fee_xaid');
+		return $this->belongsTo('App\Models\Wards', 'fee_xaid');
 	}
 }
