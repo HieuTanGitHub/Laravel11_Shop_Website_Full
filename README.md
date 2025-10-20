@@ -53,15 +53,18 @@ composer install hay composer update
 
 Mở file .env và sửa các thông tin kết nối database:
 
+## 🛠️ 4.1 File database shopbanhang.sql
+
 APP_NAME="Laravel Shop"
 APP_URL=http://localhost:8000
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=tendb
+DB_DATABASE=tendatabase
 DB_USERNAME=root
 DB_PASSWORD=
+
 
 Tạo key cho ứng dụng:
 php artisan key:generate
