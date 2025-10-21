@@ -77,4 +77,11 @@ Mở trình duyệt và truy cập:
 👉 http://localhost:8000
 
 ## 🚀 6. Contact
-fb/hieutruong19 | zalo 0932023992 fix code, any question
+fb/hieutruong19 | zalo 0932023992 fix code, any question | YT tutorials: https://www.youtube.com/@hieutancodeproject
+
+## 🚀 7. Web Images
+<img width="1358" height="1154" alt="Image" src="https://github.com/user-attachments/assets/19d9f5a2-eeb7-4ca7-9215-d732f778b842" />
+<img width="1358" height="1605" alt="Image" src="https://github.com/user-attachments/assets/ba16f255-21bb-4cdb-865f-c02f05d7dd77" />
+<img width="1358" height="2532" alt="Image" src="https://github.com/user-attachments/assets/17813296-e7c9-44be-ae32-ae34f0723961" />
+<img width="1358" height="1794" alt="Image" src="https://github.com/user-attachments/assets/4d9eab3e-14fa-4a07-a733-ac55f8b8d628" />
+<img width="1358" height="1113" alt="Image" src="https://github.com/user-attachments/assets/d51b21a4-6d2b-4129-bccf-977df33aef82" />
