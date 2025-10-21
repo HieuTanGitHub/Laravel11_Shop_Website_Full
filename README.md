@@ -74,7 +74,7 @@ Chạy server Laravel:
 php artisan serve
 
 Mở trình duyệt và truy cập:
-👉 http://localhost:8000
+👉 http://127.0.0.1:8000
 
 ## 🚀 6. Contact
 fb/hieutruong19 | zalo 0932023992 fix code, any question | YT tutorials: https://www.youtube.com/@hieutancodeproject
@@ -85,3 +85,4 @@ fb/hieutruong19 | zalo 0932023992 fix code, any question | YT tutorials: https:/
 <img width="1358" height="2532" alt="Image" src="https://github.com/user-attachments/assets/17813296-e7c9-44be-ae32-ae34f0723961" />
 <img width="1358" height="1794" alt="Image" src="https://github.com/user-attachments/assets/4d9eab3e-14fa-4a07-a733-ac55f8b8d628" />
 <img width="1358" height="1113" alt="Image" src="https://github.com/user-attachments/assets/d51b21a4-6d2b-4129-bccf-977df33aef82" />
+<img width="1358" height="1514" alt="Image" src="https://github.com/user-attachments/assets/236f8fff-1332-447c-9884-b5815f28da6c" />
